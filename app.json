@@ -21,13 +21,22 @@
       "supportsTablet": true
     },
     "android": {
+        "package": "com.native_chat_app.example",
+        "android.googleServicesFile": "./src/google-services.json",
+        
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
+   
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "build": {
+        "babel": {
+          "include": ["@chatkitty/react-native-in-app-notification"]
+        }
+      }
     }
   }
 }

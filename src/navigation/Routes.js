@@ -1,9 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useContext, useEffect, useState } from 'react';
-
 import { kitty } from '../chatkitty';
 import Loading from '../components/Loading';
-
 import { AuthContext } from './AuthProvider';
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "833713303615",
+    "firebase_url": "https://native-chat-app-8c590-default-rtdb.firebaseio.com",
+    "project_id": "native-chat-app-8c590",
+    "storage_bucket": "native-chat-app-8c590.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833713303615:android:14139aa1f556f6b781488a",
+        "android_client_info": {
+          "package_name": "com.native_chat_app.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833713303615-j3dppp77nd75t6cg6rcdt0bj3a2opqt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjGNOcFxp_iu0RrE9k-KYx5zde_4nUt2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833713303615-j3dppp77nd75t6cg6rcdt0bj3a2opqt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
