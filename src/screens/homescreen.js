@@ -52,7 +52,6 @@ export default function HomeScreen({ navigation }) {
       clicked={clicked}
       setClicked={setClicked}
     />
-    
     <View style={styles.container}>
         <FlatList
             data={channels}

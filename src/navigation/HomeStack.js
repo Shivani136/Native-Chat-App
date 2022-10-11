@@ -1,6 +1,10 @@
 //import { withInAppNotification } from '@chatkitty/react-native-in-app-notification';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
+import {
+  StyleSheet,
+ SafeAreaView,
+ } from "react-native";
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import React, { useEffect } from 'react';
@@ -61,6 +65,8 @@ function ChatComponent({ navigation, showNotification }) {
   }, [navigation, showNotification]);
 
   return (
+    // <SafeAreaView >
+  
       <ChatStack.Navigator
           screenOptions={{
             headerStyle: {
@@ -102,12 +108,14 @@ function ChatComponent({ navigation, showNotification }) {
         />
         <ChatStack.Screen
             name="Chat"
+          //  component={withInAppNotification(ChatScreen)}
             component={ChatScreen}
             options={({ route }) => ({
               title: route.params.channel.name,
             })}
         />
       </ChatStack.Navigator>
+        // </SafeAreaView>
   );
 }
 
