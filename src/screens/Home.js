@@ -37,7 +37,7 @@ const Home = () => {
         clicked={clicked}
         setClicked={setClicked}
       />
-      {  (
+      {(
 
           <List
             searchPhrase={searchPhrase}

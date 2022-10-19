@@ -1,15 +1,12 @@
 //import { withInAppNotification } from '@chatkitty/react-native-in-app-notification';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
-import {
-  StyleSheet,
- SafeAreaView,
- } from "react-native";
 import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
 import React, { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import { kitty } from '../chatkitty';
+
+import { getChannelDisplayName, kitty } from '../chatkitty';
 import BrowseChannelsScreen from '../screens/BrowseChannelsScreen';
 import ChatScreen from '../screens/ChatScreen';
 import CreateChannelScreen from '../screens/CreateChannelScreen';
@@ -33,14 +30,15 @@ export default function HomeStack() {
   }, []);
 
   return (
-      <ModalStack.Navigator presentation="modal" screenOptions={{ headerShown: false }}>
-        <ModalStack.Screen
-            name="ChatApp"
-            //component={withInAppNotification(ChatComponent)}
-            component={(ChatComponent)}
-        />
-        <ModalStack.Screen name="CreateChannel" component={CreateChannelScreen} />
-      </ModalStack.Navigator>
+    <ModalStack.Navigator 
+    presentation="modal" screenOptions={{ headerShown: false }}>
+      <ModalStack.Screen
+        name="ChatApp"
+        component={(ChatComponent)}
+        //component={withInAppNotification(ChatComponent)}
+      />
+      <ModalStack.Screen name="CreateChannel" component={CreateChannelScreen} />
+    </ModalStack.Navigator>
   );
 }
 
@@ -65,57 +63,53 @@ function ChatComponent({ navigation, showNotification }) {
   }, [navigation, showNotification]);
 
   return (
-    // <SafeAreaView >
-  
-      <ChatStack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: '#5b3a70',
-            },
-            headerTintColor: '#ffffff',
-            headerTitleStyle: {
-              fontSize: 22,
-            },
-          }}
-      >
-        <ChatStack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={(options) => ({
-              headerRight: () => (
-                  <IconButton
-                      icon="plus"
-                      size={28}
-                      color="#ffffff"
-                      onPress={() => options.navigation.navigate('BrowseChannels')}
-                  />
-              ),
-            })}
-        />
-        <ChatStack.Screen
-            name="BrowseChannels"
-            component={BrowseChannelsScreen}
-            options={(options) => ({
-              headerRight: () => (
-                  <IconButton
-                      icon="plus"
-                      size={28}
-                      color="#ffffff"
-                      onPress={() => options.navigation.navigate('CreateChannel')}
-                  />
-              ),
-            })}
-        />
-        <ChatStack.Screen
-            name="Chat"
-          //  component={withInAppNotification(ChatScreen)}
-            component={ChatScreen}
-            options={({ route }) => ({
-              title: route.params.channel.name,
-            })}
-        />
-      </ChatStack.Navigator>
-        // </SafeAreaView>
+    <ChatStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#5b3a70',
+        },
+        headerTintColor: '#ffffff',
+        headerTitleStyle: {
+          fontSize: 22,
+        },
+      }}
+    >
+      <ChatStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={(options) => ({
+          headerRight: () => (
+            <IconButton
+              icon="plus"
+              size={28}
+              color="#ffffff"
+              onPress={() => options.navigation.navigate('BrowseChannels')}
+            />
+          ),
+        })}
+      />
+      <ChatStack.Screen
+        name="BrowseChannels"
+        component={BrowseChannelsScreen}
+        options={(options) => ({
+          headerRight: () => (
+            <IconButton
+              icon="plus"
+              size={28}
+              color="#ffffff"
+              onPress={() => options.navigation.navigate('CreateChannel')}
+            />
+          ),
+        })}
+      />
+      <ChatStack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={({ route }) => ({
+          title: getChannelDisplayName(route.params.channel),
+        })}
+      />
+    </ChatStack.Navigator>
   );
 }
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 
-import { kitty } from '../chatkitty';
+import { getChannelDisplayName, kitty } from '../chatkitty';
 import Loading from '../components/Loading';
 
 export default function BrowseChannelsScreen({ navigation }) {
@@ -39,8 +39,9 @@ export default function BrowseChannelsScreen({ navigation }) {
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={() => <Divider />}
             renderItem={({ item }) => (
-                <List.Item
-                    title={item.name}
+              
+               <List.Item
+                    title={getChannelDisplayName(item)}
                     description={item.type}
                     titleNumberOfLines={1}
                     titleStyle={styles.listTitle}
@@ -48,6 +49,10 @@ export default function BrowseChannelsScreen({ navigation }) {
                     descriptionNumberOfLines={1}
                     onPress={() => handleJoinChannel(item)}
                 />
+             
+
+           
+               
             )}
         />
       </View>
