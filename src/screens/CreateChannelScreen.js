@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
-
+import useStatsBar from '../utils/useStatusBar';
 import { kitty } from '../chatkitty';
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
 
 export default function CreateChannelScreen({ navigation }) {
-  const [channelName, setChannelName] = useState('');
+  
+Platform.OS === "ios" ? useStatsBar('dark-content'): useStatsBar('light-content')
+
+
+ const [channelName, setChannelName] = useState('');
 
   function handleButtonPress() {
     if (channelName.length > 0) {

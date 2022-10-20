@@ -2,11 +2,12 @@ import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { Divider, List } from 'react-native-paper';
-
+import useStatsBar from '../utils/useStatusBar';
 import { getChannelDisplayName, kitty } from '../chatkitty';
 import Loading from '../components/Loading';
 
 export default function BrowseChannelsScreen({ navigation }) {
+  useStatsBar('light-content');
   const [channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,10 +50,6 @@ export default function BrowseChannelsScreen({ navigation }) {
                     descriptionNumberOfLines={1}
                     onPress={() => handleJoinChannel(item)}
                 />
-             
-
-           
-               
             )}
         />
       </View>

@@ -8,16 +8,17 @@ import {
   FlatList,
   View
 } from "react-native";
+import useStatsBar from '../utils/useStatusBar';
 
 import { Button, Dialog, Divider, List, Portal } from 'react-native-paper'; 
-
 import { getChannelDisplayName, kitty } from '../chatkitty';
 import Loading from '../components/Loading';
 import SearchBar from "../components/SearchBar";
+//import ImageUpload from '../components/ImageUpload';
 //import List from "../components/List";
 
 export default function HomeScreen({ navigation }) {
-
+  useStatsBar('light-content');
   const [channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -72,6 +73,7 @@ export default function HomeScreen({ navigation }) {
               clicked={clicked}
               setClicked={setClicked}
             />
+             
         <FlatList
            data={channels}
             keyExtractor={(item) => item.id.toString()}

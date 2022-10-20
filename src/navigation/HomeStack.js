@@ -83,7 +83,8 @@ function ChatComponent({ navigation, showNotification }) {
               icon="plus"
               size={28}
               color="#ffffff"
-              onPress={() => options.navigation.navigate('BrowseChannels')}
+              onPress={() => options.navigation.navigate('CreateChannel')}
+              // onPress={() => options.navigation.navigate('BrowseChannels')}
             />
           ),
         })}
