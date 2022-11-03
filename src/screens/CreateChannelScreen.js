@@ -9,9 +9,7 @@ import FormInput from '../components/FormInput';
 export default function CreateChannelScreen({ navigation }) {
   
 Platform.OS === "ios" ? useStatsBar('dark-content'): useStatsBar('light-content')
-
-
- const [channelName, setChannelName] = useState('');
+const [channelName, setChannelName] = useState('');
 
   function handleButtonPress() {
     if (channelName.length > 0) {

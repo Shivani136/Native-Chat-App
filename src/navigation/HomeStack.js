@@ -3,17 +3,80 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform ,
+  View, 
+  Text, 
+  Button 
+ } from 'react-native';
 import { IconButton } from 'react-native-paper';
-
 import { getChannelDisplayName, kitty } from '../chatkitty';
 import BrowseChannelsScreen from '../screens/BrowseChannelsScreen';
 import ChatScreen from '../screens/ChatScreen';
 import CreateChannelScreen from '../screens/CreateChannelScreen';
 import HomeScreen from '../screens/HomeScreen';
+import LoginScreen from '../screens/LoginScreen';
+import DrawerNavigation from '../screens/DrawerNavigation';
+
+// import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+
 
 const ChatStack = createStackNavigator();
 const ModalStack = createStackNavigator();
+
+function Feed({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Feed Screen</Text>
+      <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
+      <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
+    </View>
+  );
+}
+
+function Notificationss() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Notifications Screen</Text>
+    </View>
+  );
+}
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Close drawer"
+        onPress={() => props.navigation.closeDrawer()}
+      />
+      <DrawerItem
+        label="Toggle drawer"
+        onPress={() => props.navigation.toggleDrawer()}
+      />
+    </DrawerContentScrollView>
+  );
+}
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator
+      useLegacyImplementation
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+    >
+      <Drawer.Screen name="Feed" component={Feed} />
+      <Drawer.Screen name="Notifications" component={Notifications} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function HomeStack() {
   useEffect(() => {
@@ -31,13 +94,14 @@ export default function HomeStack() {
 
   return (
     <ModalStack.Navigator 
-    presentation="modal" screenOptions={{ headerShown: false }}>
+       presentation="modal" screenOptions={{ headerShown: false }}>
       <ModalStack.Screen
         name="ChatApp"
         component={(ChatComponent)}
         //component={withInAppNotification(ChatComponent)}
       />
-      <ModalStack.Screen name="CreateChannel" component={CreateChannelScreen} />
+      <ModalStack.Screen name="CreateChannel" component={CreateChannelScreen}/>
+    
     </ModalStack.Navigator>
   );
 }
@@ -66,7 +130,7 @@ function ChatComponent({ navigation, showNotification }) {
     <ChatStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#5b3a70',
+        backgroundColor: '#5b3a70',
         },
         headerTintColor: '#ffffff',
         headerTitleStyle: {
@@ -83,8 +147,18 @@ function ChatComponent({ navigation, showNotification }) {
               icon="plus"
               size={28}
               color="#ffffff"
-              onPress={() => options.navigation.navigate('CreateChannel')}
+              onPress={() => options.navigation.navigate('BrowseChannels')}
               // onPress={() => options.navigation.navigate('BrowseChannels')}
+            />
+          ),
+          //name="Home"
+        // component={HomeScreen}
+          headerLeft: () => (
+            <IconButton
+              icon="home"
+              size={28}
+              color="#ffffff"
+              onPress={() => options.navigation.navigate('LoginScreen')}
             />
           ),
         })}
@@ -144,6 +218,5 @@ async function registerForPushNotificationsAsync() {
       lightColor: '#FF231F7C',
     });
   }
-
   return token;
 }

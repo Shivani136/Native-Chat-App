@@ -109,9 +109,6 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
-                        
-
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f5f5f5',
