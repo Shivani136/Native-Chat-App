@@ -6,6 +6,7 @@ import {
   FlatList,
   SafeAreaView,
 } from "react-native";
+import colors from '../config/colors';
 
 // definition of the Item, which will be rendered in the FlatList
 const Item = ({ name, details }) => (
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   item: {
     margin: 30,
     borderBottomWidth: 2,
-    borderBottomColor: "lightgrey"
+    borderBottomColor: colors.gray
   },
   title: {
     fontSize: 20,

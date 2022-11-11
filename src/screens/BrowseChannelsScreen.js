@@ -5,6 +5,7 @@ import { Divider, List } from 'react-native-paper';
 import useStatsBar from '../utils/useStatusBar';
 import { getChannelDisplayName, kitty } from '../chatkitty';
 import Loading from '../components/Loading';
+import colors from '../config/colors';
 
 export default function BrowseChannelsScreen({ navigation }) {
   useStatsBar('light-content');
@@ -58,7 +59,8 @@ export default function BrowseChannelsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.gray,
+    // backgroundColor: '#f5f5f5',
     flex: 1,
   },
   listTitle: {

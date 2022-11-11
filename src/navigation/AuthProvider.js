@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { kitty } from '../chatkitty';
 import { firebase } from '../firebase';
+import auth from '@react-native-firebase/auth';
 
 export const AuthContext = createContext({});
 

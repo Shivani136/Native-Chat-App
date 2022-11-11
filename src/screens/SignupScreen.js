@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
-
+import colors from '../config/colors';
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
 import Loading from '../components/Loading';
@@ -29,14 +29,20 @@ export default function SignupScreen({ navigation }) {
         />
         <FormInput
             labelName="Email"
+            icon="email"
             value={email}
             autoCapitalize="none"
+            keyboardType="email-address"
+            textContentType="emailAddress"
             onChangeText={(userEmail) => setEmail(userEmail)}
         />
         <FormInput
             labelName="Password"
             value={password}
+            icon="lock"
             secureTextEntry={true}
+            autoCapitalize="none"
+            textContentType="password"
             onChangeText={(userPassword) => setPassword(userPassword)}
         />
        
@@ -50,7 +56,7 @@ export default function SignupScreen({ navigation }) {
             icon="keyboard-backspace"
             size={30}
             style={styles.navButton}
-            color="#5b3a70"
+            color={colors.purple}
             onPress={() => navigation.goBack()}
         />
       </View>
@@ -59,7 +65,7 @@ export default function SignupScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.gray,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

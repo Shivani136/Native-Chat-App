@@ -3,10 +3,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import React, { useEffect } from 'react';
-import { Platform ,
+import { 
+  Platform ,
   View, 
   Text, 
-  Button 
+  Button ,
+  StyleSheet,
+  Linking
  } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { getChannelDisplayName, kitty } from '../chatkitty';
@@ -16,67 +19,68 @@ import CreateChannelScreen from '../screens/CreateChannelScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DrawerNavigation from '../screens/DrawerNavigation';
+import colors from '../config/colors';
 
 // import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
+// import { NavigationContainer } from '@react-navigation/native';
+// import {
+//   createDrawerNavigator,
+//   DrawerContentScrollView,
+//   DrawerItemList,
+//   DrawerItem,
+// } from '@react-navigation/drawer';
 
 
 const ChatStack = createStackNavigator();
 const ModalStack = createStackNavigator();
 
-function Feed({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
-      <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
-      <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
-    </View>
-  );
-}
+// function Feed({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Feed Screen</Text>
+//       <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
+//       <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
+//     </View>
+//   );
+// }
 
-function Notificationss() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notifications Screen</Text>
-    </View>
-  );
-}
+// function Notificationss() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Notifications Screen</Text>
+//     </View>
+//   );
+// }
 
-function CustomDrawerContent(props) {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.closeDrawer()}
-      />
-      <DrawerItem
-        label="Toggle drawer"
-        onPress={() => props.navigation.toggleDrawer()}
-      />
-    </DrawerContentScrollView>
-  );
-}
+// function CustomDrawerContent(props) {
+//   return (
+//     <DrawerContentScrollView {...props}>
+//       <DrawerItemList {...props} />
+//       <DrawerItem
+//         label="Close drawer"
+//         onPress={() => props.navigation.closeDrawer()}
+//       />
+//       <DrawerItem
+//         label="Toggle drawer"
+//         onPress={() => props.navigation.toggleDrawer()}
+//       />
+//     </DrawerContentScrollView>
+//   );
+// }
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
-function MyDrawer() {
-  return (
-    <Drawer.Navigator
-      useLegacyImplementation
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
-      <Drawer.Screen name="Feed" component={Feed} />
-      <Drawer.Screen name="Notifications" component={Notifications} />
-    </Drawer.Navigator>
-  );
-}
+// function MyDrawer() {
+//   return (
+//     <Drawer.Navigator
+//       useLegacyImplementation
+//       drawerContent={(props) => <CustomDrawerContent {...props} />}
+//     >
+//       <Drawer.Screen name="Feed" component={Feed} />
+//       <Drawer.Screen name="Notifications" component={Notifications} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 export default function HomeStack() {
   useEffect(() => {
@@ -101,6 +105,9 @@ export default function HomeStack() {
         //component={withInAppNotification(ChatComponent)}
       />
       <ModalStack.Screen name="CreateChannel" component={CreateChannelScreen}/>
+      {/* <ModalStack.Screen name="Login" component={LoginScreen}/> */}
+      <ModalStack.Screen name="DrawerNavigation" component={DrawerNavigation}/>
+    
     
     </ModalStack.Navigator>
   );
@@ -112,6 +119,7 @@ function ChatComponent({ navigation, showNotification }) {
       showNotification({
         title: notification.title,
         message: notification.body,
+        //image : notification.image
         onPress: () => {
           switch (notification.data.type) {
             case 'USER:SENT:MESSAGE':
@@ -130,11 +138,11 @@ function ChatComponent({ navigation, showNotification }) {
     <ChatStack.Navigator
       screenOptions={{
         headerStyle: {
-        backgroundColor: '#5b3a70',
+        backgroundColor: colors.purple,
         },
-        headerTintColor: '#ffffff',
+        headerTintColor: colors.white,
         headerTitleStyle: {
-          fontSize: 22,
+        fontSize: 22,
         },
       }}
     >
@@ -144,21 +152,23 @@ function ChatComponent({ navigation, showNotification }) {
         options={(options) => ({
           headerRight: () => (
             <IconButton
-              icon="plus"
+              icon="message-plus"
               size={28}
-              color="#ffffff"
+              color= {colors.white}
               onPress={() => options.navigation.navigate('BrowseChannels')}
               // onPress={() => options.navigation.navigate('BrowseChannels')}
             />
           ),
-          //name="Home"
-        // component={HomeScreen}
+       // })}
+        //   name="Home"
+        //   component={HomeScreen}
+         // options={(options) => ({
           headerLeft: () => (
             <IconButton
               icon="home"
               size={28}
-              color="#ffffff"
-              onPress={() => options.navigation.navigate('LoginScreen')}
+              color= {colors.white}
+              onPress={() => options.navigation.navigate('DrawerNavigation')}
             />
           ),
         })}
@@ -166,23 +176,43 @@ function ChatComponent({ navigation, showNotification }) {
       <ChatStack.Screen
         name="BrowseChannels"
         component={BrowseChannelsScreen}
-        options={(options) => ({
+        options={({ navigation }) => ({
           headerRight: () => (
             <IconButton
-              icon="plus"
+              icon="message-plus"
               size={28}
-              color="#ffffff"
-              onPress={() => options.navigation.navigate('CreateChannel')}
+              color= {colors.white}
+              onPress={() => navigation.navigate('CreateChannel')}
             />
           ),
         })}
       />
+        
       <ChatStack.Screen
         name="Chat"
         component={ChatScreen}
-        options={({ route }) => ({
+        
+         options={({ route }) => ({
           title: getChannelDisplayName(route.params.channel),
-        })}
+        })} 
+
+        options={(navigation) => ({
+          headerRight: () => (
+            <View  style={styles.sendingContainer}>
+            <IconButton icon='phone' onPress={ ()=>{ Linking.openURL('https://voicecallingapp.herokuapp.com/')}}
+            size={30} color= {colors.white} />
+             <IconButton icon='video' size={30} color= {colors.white} />
+            </View>
+          ),
+          })}
+        
+        
+       
+       
+
+        // options={({ route }) => ({
+        //   title: getChannelDisplayName(route.params.channel),
+        // })}
       />
     </ChatStack.Navigator>
   );
@@ -220,3 +250,11 @@ async function registerForPushNotificationsAsync() {
   }
   return token;
 }
+
+const styles = StyleSheet.create({
+  sendingContainer: {
+    justifyContent: 'center',
+    flexDirection : 'row',
+    alignItems: 'center',
+    },
+});

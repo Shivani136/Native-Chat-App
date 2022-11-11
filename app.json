@@ -6,7 +6,15 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
+     "plugins": [
+          [
+            "expo-image-picker",
+            {
+              "photosPermission": "The app accesses your photos to let you share them with your friends."
+            }
+          ]
+        ],
+       "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
@@ -20,10 +28,10 @@
     "ios": {
       "supportsTablet": true
     },
+    
     "android": {
         "package": "com.native_chat_app.example",
-        "android.googleServicesFile": "./src/google-services.json",
-        
+       //"android.googleServicesFile": "google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

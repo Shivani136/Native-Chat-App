@@ -5,7 +5,13 @@
     "project_id": "native-chat-app-8c590",
     "storage_bucket": "native-chat-app-8c590.appspot.com"
   },
-  "client": [
+      
+      "dependencies" :{
+        "classpath" "com.android.tools.build:gradle:1.0.0"
+        "classpath" "com.google.gms:google-services:1.3.0-beta1"
+        },
+
+    "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:833713303615:android:14139aa1f556f6b781488a",
@@ -26,7 +32,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
+          "other__oauth_client": [
             {
               "client_id": "833713303615-j3dppp77nd75t6cg6rcdt0bj3a2opqt1.apps.googleusercontent.com",
               "client_type": 3

@@ -7,6 +7,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+//import colors from '../config/colors';
 
 function Feed({ navigation }) {
   return (

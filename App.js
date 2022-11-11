@@ -84,18 +84,26 @@ import { StatusBar } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/screens/Home';
 import ImageUpload from './src/components/ImageUpload';
+import ImagePicker from './src/components/ImagePicker';
+import Call from './src/components/Call';
+import CustomView from './src/components/CustomView';
 import Providers from './src/navigation';
+
 
 export default function App() {
 return (
   <>
     {/* <StatusBar barStyle="dark-content" /> */}
     <StatusBar/>
+    {/* <CustomView/> */}
+    {/* <Call /> */}
     {/* <ImageUpload /> */}
-    <Providers />
+    {/* <ImagePicker/> */}
+    <Providers/>
       {/* <View style={styles.root}>
       //<Home />
       //</View> */}
+      
   </>
 );
 }

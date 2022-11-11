@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import defaultStyle from '../config/styles';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -8,6 +9,7 @@ export default function FormInput({ labelName, ...rest }) {
   return (
       <TextInput
           label={labelName}
+          placeholderTextColor = { defaultStyle.colors.medium }
           style={styles.input}
           numberOfLines={1}
           {...rest}
