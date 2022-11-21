@@ -87,7 +87,10 @@ import ImageUpload from './src/components/ImageUpload';
 import ImagePicker from './src/components/ImagePicker';
 import Call from './src/components/Call';
 import CustomView from './src/components/CustomView';
+import PdfFile from './src/components/PdfFile';
+import Pdf from './src/components/Pdf';
 import Providers from './src/navigation';
+
 
 
 export default function App() {
@@ -95,10 +98,12 @@ return (
   <>
     {/* <StatusBar barStyle="dark-content" /> */}
     <StatusBar/>
+    {/* <Pdf /> */}
     {/* <CustomView/> */}
     {/* <Call /> */}
     {/* <ImageUpload /> */}
     {/* <ImagePicker/> */}
+     {/* <PdfFile /> */}
     <Providers/>
       {/* <View style={styles.root}>
       //<Home />

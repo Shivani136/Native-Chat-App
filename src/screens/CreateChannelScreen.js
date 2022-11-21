@@ -7,6 +7,7 @@ import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
 import colors from '../config/colors';
 import firestore from '@react-native-firebase/firestore';
+import {firebase} from 'react-native-firebase';
 
 export default function CreateChannelScreen({ navigation }) {
   
@@ -16,7 +17,7 @@ const [channelName, setChannelName] = useState('');
   function handleButtonPress() {
 
     if (channelName.length > 0) {
-    //  kitty
+       kitty
       firestore()
       .collection('THREADS')
       .createChannel({

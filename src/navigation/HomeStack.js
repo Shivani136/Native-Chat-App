@@ -107,9 +107,7 @@ export default function HomeStack() {
       <ModalStack.Screen name="CreateChannel" component={CreateChannelScreen}/>
       {/* <ModalStack.Screen name="Login" component={LoginScreen}/> */}
       <ModalStack.Screen name="DrawerNavigation" component={DrawerNavigation}/>
-    
-    
-    </ModalStack.Navigator>
+      </ModalStack.Navigator>
   );
 }
 
@@ -155,7 +153,7 @@ function ChatComponent({ navigation, showNotification }) {
               icon="message-plus"
               size={28}
               color= {colors.white}
-              onPress={() => options.navigation.navigate('BrowseChannels')}
+              onPress={() => options.navigation.navigate('CreateChannel')}
               // onPress={() => options.navigation.navigate('BrowseChannels')}
             />
           ),
@@ -192,11 +190,9 @@ function ChatComponent({ navigation, showNotification }) {
         name="Chat"
         component={ChatScreen}
         
-         options={({ route }) => ({
+        options={({ route }) => ({
           title: getChannelDisplayName(route.params.channel),
-        })} 
 
-        options={(navigation) => ({
           headerRight: () => (
             <View  style={styles.sendingContainer}>
             <IconButton icon='phone' onPress={ ()=>{ Linking.openURL('https://voicecallingapp.herokuapp.com/')}}
@@ -205,15 +201,7 @@ function ChatComponent({ navigation, showNotification }) {
             </View>
           ),
           })}
-        
-        
-       
-       
-
-        // options={({ route }) => ({
-        //   title: getChannelDisplayName(route.params.channel),
-        // })}
-      />
+        />
     </ChatStack.Navigator>
   );
 }

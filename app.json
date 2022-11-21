@@ -2,47 +2,59 @@
   "expo": {
     "name": "Chat-app",
     "slug": "Chat-app",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/chat2.jpg",
     "userInterfaceStyle": "light",
-     "plugins": [
-          [
-            "expo-image-picker",
-            {
-              "photosPermission": "The app accesses your photos to let you share them with your friends."
-            }
-          ]
-        ],
-       "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+    
+    "splash": {
+      "image": "./src/assets/splash.png",
+ 
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      [
+        "expo-document-picker",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ]
+    ],
+   "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.shivani136.Chat-app"
     },
-    
     "android": {
-        "package": "com.native_chat_app.example",
-       //"android.googleServicesFile": "google-services.json",
+      "package": "com.native_chat_app.example",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
-   
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./src/assets/favicon.png",
       "build": {
         "babel": {
-          "include": ["@chatkitty/react-native-in-app-notification"]
+          "include": [
+            "@chatkitty/react-native-in-app-notification"
+          ]
         }
       }
     }
